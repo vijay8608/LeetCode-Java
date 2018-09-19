@@ -1,0 +1,37 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        diceSum(3, 5);
+    }
+
+    public static void diceSum(int dice, int diceSum){
+        
+        List<Integer> list = new ArrayList<>();
+        diceSumHelper(dice, diceSum, list);
+    }
+
+    public static void diceSumHelper(int dice, int diceSum, List<Integer> list){
+        //System.out.println("diceSumHelper( "+dice+", "+diceSum+", "+list+" )");
+
+        if (dice == 0){
+            if (diceSum == 0)
+                System.out.println(list);
+
+        }else{
+            for (int i = 1 ; i <= 6 ; i++){
+                // choose
+                list.add(i);
+
+                // explore
+                diceSumHelper(dice -1, diceSum - i, list);
+
+                // un choose
+                list.remove(list.size()-1);
+            }
+        }
+    }
+}
