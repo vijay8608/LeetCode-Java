@@ -1,0 +1,54 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        List<String> list =  new ArrayList<>();
+
+        list.add("vijay");
+        list.add("varun");
+        list.add("indira");
+        list.add("divya");
+
+        sublists(list);
+
+    }
+
+    public static void sublists(List<String> list){
+
+        List<String> chosen = new ArrayList<>();
+
+        sublistsHelper(list, chosen);
+    }
+
+    public static void sublistsHelper(List<String> list, List<String> chosen ){
+
+        System.out.println("sublists ("+list+" ,"+chosen+" )");
+        if (list.size() == 0){
+            System.out.println(chosen);
+
+        }else{
+
+            String first = list.get(0);
+            list.remove(0);
+            chosen.add(first);
+
+            // choose explore with
+            sublistsHelper(list,chosen);
+
+            chosen.remove(chosen.size()-1);
+
+            //choose explore without
+            sublistsHelper(list,chosen);
+
+            //un-choose
+            list.add(0,first);
+
+        }
+
+
+
+    }
+}

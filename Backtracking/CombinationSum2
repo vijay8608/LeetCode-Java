@@ -1,0 +1,48 @@
+class Solution {
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        Arrays.sort(candidates);
+        List<Integer> arr =  new ArrayList<>();
+
+        for (int i = 0 ; i <  candidates.length ;i++){
+            arr.add(candidates[i]);
+        }
+        
+        List<List<Integer>> list = new ArrayList<>();
+        HashSet<List<Integer>> set = new HashSet<>();
+        combinationSum2Helper(arr, list, target, new ArrayList<>() ,set,0);
+        
+        return list;
+    }
+    
+    public void combinationSum2Helper(List<Integer> arr, List<List<Integer>> list, int target, List<Integer> chosen,HashSet<List<Integer>> set, int pos ){
+        
+        if (target == 0){
+            if(!set.contains(chosen)){
+                list.add(new ArrayList<>(chosen));
+                set.add(chosen);
+            }    
+        }else if (target < 0){
+            return;
+        }else {
+            
+            for(int i = pos ; i < arr.size() ; i++){
+                
+                // choose
+                int temp = arr.get(i);
+                chosen.add(temp);
+                arr.remove(i);
+                
+                // explore
+                combinationSum2Helper(arr, list, target - temp , chosen,set,i);
+                
+                // un-choose
+                chosen.remove(chosen.size() -1);
+                arr.add(i,temp);
+            }
+            
+            
+        }
+    }
+    
+    
+}

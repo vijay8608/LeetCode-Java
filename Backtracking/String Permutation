@@ -1,0 +1,38 @@
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        permute("Vijay");
+
+    }
+
+    public static void permute(String s){
+
+          permuteHelper(s,"");
+    }
+
+    public static void permuteHelper(String  s, String chosen){
+        System.out.println("permute " + s + ", " + chosen);
+        if (s.length() == 0){
+            System.out.println(chosen);
+        }else {
+
+            for (int i = 0 ; i < s.length() ; i++){
+
+                //choose
+                String chosenLetter = s.substring(i, i + 1);
+                s = s.substring(0, i) + s.substring(i + 1, s.length());
+                chosen += chosenLetter;
+
+                //explore
+                permuteHelper(s, chosen);
+
+                //un-choose
+                chosen = chosen.substring(0, chosen.length() - 1);
+                s = s.substring(0, i) + chosenLetter + s.substring(i);
+
+            }
+        }
+    }
+}
