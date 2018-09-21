@@ -1,0 +1,81 @@
+public class TreeNode {
+    int value;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(int value){
+        this.value = value;
+        left = null;
+        right = null;
+    }
+
+    TreeNode(){
+        left = null;
+        right = null;
+        this.value = 0;
+    }
+}
+
+public class BinaryTree {
+
+    TreeNode root;
+
+    BinaryTree(int val){
+        root = new TreeNode(val);
+    }
+
+    BinaryTree(){
+        root = null;
+    }
+
+
+    public void delete(int val){
+        root = deleteHelper(root, val);
+    }
+
+    private TreeNode deleteHelper(TreeNode root, int val){
+
+        if (root == null){
+            return root;
+        }
+
+        if (root.value < val){
+            root.right = deleteHelper(root.right, val);
+        }else if ( root.value > val){
+            root.left = deleteHelper(root.left, val);
+        }else{
+
+            // node with one child
+
+            if (root.left == null){
+                return root.right;
+            }else if ( root.right == null){
+                return root.left;
+            }
+
+            // node with 2 child
+
+            root.value = minValueHelper(root.right);
+
+            root.right = deleteHelper(root.right, root.value);
+
+        }
+
+        return root;
+    }
+
+    public int minValue(){
+        return minValueHelper(root);
+    }
+
+    private int minValueHelper(TreeNode temp){
+
+        if (temp == null) return 0;
+
+        while (temp.left != null){
+            temp = temp.left;
+        }
+
+        return temp.value;
+    }
+}
