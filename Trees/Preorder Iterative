@@ -1,0 +1,61 @@
+public class TreeNode {
+    int value;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(int value){
+        this.value = value;
+        left = null;
+        right = null;
+    }
+
+    TreeNode(){
+        left = null;
+        right = null;
+        this.value = 0;
+    }
+}
+
+public class BinaryTree {
+
+    TreeNode root;
+
+    BinaryTree(int val){
+        root = new TreeNode(val);
+    }
+
+    BinaryTree(){
+        root = null;
+    }
+
+    public void printPreorderIterative(){
+        preorderIterative(root);
+        System.out.println();
+    }
+
+    private void preorderIterative(TreeNode root){
+
+        if (root == null)
+            return;
+
+        TreeNode current = root;
+
+        Stack<TreeNode> s = new Stack<>();
+
+        s.push(current);
+
+        while(s.size() != 0){
+
+            current = s.pop();
+
+            System.out.print(current.value+" ");
+
+            if (current.right != null)
+                s.push(current.right);
+
+            if (current.left != null)
+                s.push(current.left);
+
+        }
+    }
+}

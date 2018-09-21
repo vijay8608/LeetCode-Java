@@ -1,0 +1,61 @@
+public class TreeNode {
+    int value;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(int value){
+        this.value = value;
+        left = null;
+        right = null;
+    }
+
+    TreeNode(){
+        left = null;
+        right = null;
+        this.value = 0;
+    }
+}
+
+public class BinaryTree {
+
+    TreeNode root;
+
+    BinaryTree(int val){
+        root = new TreeNode(val);
+    }
+
+    BinaryTree(){
+        root = null;
+    }
+
+    private void postorderIterativeOneStack(TreeNode root){
+
+        Stack<TreeNode> s = new Stack<>();
+
+        TreeNode current = root;
+
+        while (current != null || !s.isEmpty()){
+
+            if (current != null){
+                s.push(current);
+                current = current.left;
+            }else {
+                TreeNode temp = s.peek().right;
+
+                if (temp == null){
+                    temp = s.pop();
+                    System.out.print(temp.value+" ");
+                    while (!s.isEmpty() && temp == s.peek().right){
+                        temp = s.pop();
+                        System.out.print(temp.value+"- ");
+                    }
+                }else {
+                    current = temp;
+                }
+
+            }
+
+
+        }
+    }
+}

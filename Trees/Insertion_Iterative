@@ -1,0 +1,62 @@
+public class TreeNode {
+    int value;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(int value){
+        this.value = value;
+        left = null;
+        right = null;
+    }
+
+    TreeNode(){
+        left = null;
+        right = null;
+        this.value = 0;
+    }
+}
+
+public class BinaryTree {
+
+    TreeNode root;
+
+    BinaryTree(int val){
+        root = new TreeNode(val);
+    }
+
+    BinaryTree(){
+        root = null;
+    }
+
+    public void insertIterative(int val){
+        insertIterativeHelper(root, val);
+    }
+
+    private void insertIterativeHelper(TreeNode root, int val){
+        TreeNode node = new TreeNode(val);
+
+        if (root == null){
+            root = node;
+            return;
+        }
+
+        TreeNode parent = null, current = root;
+
+        while (current != null){
+
+            parent = current;
+
+            if (current.value <= val )
+                current = current.right;
+            else if (current.value > val)
+                current = current.left;
+        }
+
+        if (parent.value <= val)
+            parent.right = node;
+        else if (parent.value > val)
+            parent.left = node;
+
+        return;
+    }
+}

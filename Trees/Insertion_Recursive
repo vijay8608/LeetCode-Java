@@ -1,0 +1,52 @@
+public class TreeNode {
+    int value;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(int value){
+        this.value = value;
+        left = null;
+        right = null;
+    }
+
+    TreeNode(){
+        left = null;
+        right = null;
+        this.value = 0;
+    }
+}
+
+
+public class BinaryTree {
+
+    TreeNode root;
+
+    BinaryTree(int val){
+        root = new TreeNode(val);
+    }
+
+    BinaryTree(){
+        root = null;
+    }
+
+    public void insert(int val){
+        root = insertHelper(root,val);
+    }
+
+    private TreeNode insertHelper(TreeNode root, int val){
+
+        if (root == null){
+            root = new TreeNode(val);
+            return root;
+        }else if (root.value < val){
+            root.left = insertHelper(root.right, val);
+        }else if (root.value > val){
+            root.left = insertHelper(root.left,val);
+        }
+
+        return root;
+    }
+}
+
+
+

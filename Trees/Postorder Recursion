@@ -1,0 +1,44 @@
+public class TreeNode {
+    int value;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(int value){
+        this.value = value;
+        left = null;
+        right = null;
+    }
+
+    TreeNode(){
+        left = null;
+        right = null;
+        this.value = 0;
+    }
+}
+
+public class BinaryTree {
+
+    TreeNode root;
+
+    BinaryTree(int val){
+        root = new TreeNode(val);
+    }
+
+    BinaryTree(){
+        root = null;
+    }
+
+    public void printPostorderRecursion(){
+        postorderRecursion(root);
+        System.out.println();
+    }
+
+    private void postorderRecursion(TreeNode root){
+        if (root == null)
+            return;
+
+        postorderRecursion(root.left);
+        postorderRecursion(root.right);
+        System.out.print(root.value+" ");
+    }
+}
