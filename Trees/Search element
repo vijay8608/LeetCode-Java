@@ -32,6 +32,18 @@ public class BinaryTree {
         return searchHelper(root,val);
     }
 
+    private TreeNode searchNodeHelper(TreeNode root, int val){
+
+        if (root == null || root.value == val)
+            return root;
+
+        if (root.value < val)
+            return searchNodeHelper(root.right, val);
+
+        return searchNodeHelper(root.left, val);
+
+    }
+
     private boolean searchHelper(TreeNode root, int val){
 
         if (root == null){

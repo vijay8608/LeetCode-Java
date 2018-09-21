@@ -1,0 +1,85 @@
+public class TreeNode {
+    int value;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(int value){
+        this.value = value;
+        left = null;
+        right = null;
+    }
+
+    TreeNode(){
+        left = null;
+        right = null;
+        this.value = 0;
+    }
+}
+
+public class BinaryTree {
+
+    TreeNode root;
+
+    BinaryTree(int val){
+        root = new TreeNode(val);
+    }
+
+    BinaryTree(){
+        root = null;
+    }
+
+    private TreeNode searchNodeHelper(TreeNode root, int val){
+
+        if (root == null || root.value == val)
+            return root;
+
+        if (root.value < val)
+            return searchNodeHelper(root.right, val);
+
+        return searchNodeHelper(root.left, val);
+
+    }
+
+    private int minValueHelper(TreeNode temp){
+
+        if (temp == null) return 0;
+
+        while (temp.left != null){
+            temp = temp.left;
+        }
+
+        return temp.value;
+    }
+
+    public int inorderSuccessor(int val){
+        return inorderSuccessorHelper(root, val);
+    }
+
+    private int inorderSuccessorHelper(TreeNode root, int val){
+
+        TreeNode parent = root;
+
+        if (root == null ) return 0;
+
+        root = searchNodeHelper(root,val);
+
+        if (root.right != null){
+            return minValueHelper(root.right);
+        }else{
+
+            TreeNode temp = parent;
+
+            while (true){
+
+                if (temp.value < val){
+                    temp = temp.right;
+                }else if (temp.value > val){
+                    parent = temp;
+                    temp = temp.left;
+                }else if (temp.value == val){
+                    return parent.value;
+                }
+            }
+        }
+    }
+}
