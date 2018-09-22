@@ -1,61 +1,44 @@
 public class TreeNode {
-    int value;
-    TreeNode left;
-    TreeNode right;
-
-    TreeNode(int value){
-        this.value = value;
-        left = null;
-        right = null;
-    }
-
-    TreeNode(){
-        left = null;
-        right = null;
-        this.value = 0;
-    }
+  int value;
+  TreeNode left;
+  TreeNode right
+  TreeNode(int value){
+      this.value = value;
+      left = null;
+      right = null;
+  
+  TreeNode(){
+      left = null;
+      right = null;
+      this.value = 
+  }
 }
 
 public class BinaryTree {
-
-    TreeNode root;
-
-    BinaryTree(int val){
-        root = new TreeNode(val);
-    }
-
-    BinaryTree(){
-        root = null;
-    }
-
-    public void levelOrderTraversal(){
-        levelOrderTraversalHelper(root);
-    }
-
-    private void levelOrderTraversalHelper(TreeNode root){
-
-        if (root == null) return ;
-
-        Queue<TreeNode> q = new LinkedList<>();
-
-        q.add(root);
-
-        int level = 0;
-
-        while (!q.isEmpty()){
-
-            TreeNode temp = q.poll();
-
-            System.out.print(temp.value+" ");
-
-            if (temp.left != null){
-                q.add(temp.left);
-            }
-
-            if (temp.right != null){
-                q.add(temp.right);
-            }
-
-        }
+   TreeNode root;
+   BinaryTree(int val){
+       root = new TreeNode(val);
+   }
+   BinaryTree(){
+       root = null;
+   }
+   public void levelOrderTraversal(){
+       levelOrderTraversalHelper(root);
+   }
+   private void levelOrderTraversalHelper(TreeNode root){
+       if (root == null) return ;
+       Queue<TreeNode> q = new LinkedList<>();
+       q.add(root);
+       int level = 0;
+       while (!q.isEmpty()){
+           TreeNode temp = q.poll();
+           System.out.print(temp.value+" ");
+           if (temp.left != null){
+               q.add(temp.left);
+           }
+           if (temp.right != null){
+               q.add(temp.right);
+           }
+       }
     }
 }

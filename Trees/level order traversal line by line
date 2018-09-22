@@ -1,31 +1,22 @@
 private void levelOrderTraversalLinebyLineHelper(TreeNode root){
-
-    if (root == null) return;
-    Queue<TreeNode> q = new LinkedList<>();
-
-    q.add(root);
-
-    while (true){
-
-        int nodeCount = q.size();
-
-        if (nodeCount == 0) break;
-
-        while (nodeCount > 0){
-
-            TreeNode temp = q.peek();
-
-            System.out.print(temp.value+" ");
-            q.remove();
-
-            if (temp.left != null){
-                q.add(temp.left);
-            }
-            if (temp.right != null){
-                q.add(temp.right);
-            }
-            nodeCount--;
+if (root == null) return;
+Queue<TreeNode> q = new LinkedList<>();
+q.add(root);
+while (true){
+    int nodeCount = q.size();
+    if (nodeCount == 0) break;
+    while (nodeCount > 0){
+        TreeNode temp = q.peek();
+        System.out.print(temp.value+" ");
+        q.remove();
+        if (temp.left != null){
+            q.add(temp.left);
         }
-        System.out.println();
-    }    
+        if (temp.right != null){
+            q.add(temp.right);
+        }
+        nodeCount--;
+    }
+    System.out.println();
+}    
 }
